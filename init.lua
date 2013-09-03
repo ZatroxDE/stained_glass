@@ -334,13 +334,13 @@ for i in ipairs(stained_glass_hues) do
 
 		elseif shadename == "light_" or shadename == "pastel_" or shadename == "faint_" then 
 			stained_glass_define({
-				colorcode = huenumber.."_"..shadenumber.."_",
+				colorcode = huenumber.."_"..shadenumber,
 				colorname = shadename..huename,
 				recipe = recipevalue,
 				shade = shadename,
 			})
 			stained_trapglass_define({
-				colorcode = huenumber.."_"..shadenumber.."_",
+				colorcode = huenumber.."_"..shadenumber,
 				colorname = shadename..huename,
 				recipe = recipevalue,
 				shade = shadename,
