@@ -216,7 +216,7 @@ function stained_glass_define(arg)
 			local aliasname
 			minetest.register_alias( "stained_glass:" .. code, "stained_glass:" .. name)
 			if string.match(name,"redviolet") then
-				oldname=name
+				local oldname=name
 				aliasname=string.gsub(name, "redviolet","red_violet") -- need to support red_violet existence, too.
 				minetest.register_alias( "stained_glass:" .. aliasname, "stained_glass:" .. oldname)
 			end
