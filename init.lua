@@ -54,9 +54,7 @@ minetest.register_node("stained_glass:stained_glass", {
 	groups = {snappy=2,cracky=3,oddly_breakable_by_hand=3, not_in_creative_inventory=1},
 	sounds = default.node_sound_glass_defaults(),
 	drop = "moreblocks:super_glow_glass",
-	after_dig_node = function(pos, oldnode, oldmetadata, digger)
-		unifieddyes.after_dig_node(pos, oldnode, oldmetadata, digger)
-	end,
+	after_dig_node = unifieddyes.after_dig_node,
 	on_rightclick = function(pos, node, clicker, itemstack, pointed_thing)
 		local name = itemstack:get_name()
 		if name == "moreblocks:sweeper" then
@@ -92,9 +90,7 @@ minetest.register_node("stained_glass:pastel_stained_glass", {
 	walkable = true,
 	groups = {snappy=2,cracky=3,oddly_breakable_by_hand=3, not_in_creative_inventory=1},
 	sounds = default.node_sound_glass_defaults(),
-	after_dig_node = function(pos, oldnode, oldmetadata, digger)
-		unifieddyes.after_dig_node(pos, oldnode, oldmetadata, digger)
-	end,
+	after_dig_node = unifieddyes.after_dig_node,
 	on_rightclick = function(pos, node, clicker, itemstack, pointed_thing)
 		local name = itemstack:get_name()
 		if name == "moreblocks:sweeper" then
@@ -121,9 +117,7 @@ minetest.register_node("stained_glass:faint_stained_glass", {
 	walkable = true,
 	groups = {snappy=2,cracky=3,oddly_breakable_by_hand=3, not_in_creative_inventory=1},
 	sounds = default.node_sound_glass_defaults(),
-	after_dig_node = function(pos, oldnode, oldmetadata, digger)
-		unifieddyes.after_dig_node(pos, oldnode, oldmetadata, digger)
-	end,
+	after_dig_node = unifieddyes.after_dig_node,
 	on_rightclick = function(pos, node, clicker, itemstack, pointed_thing)
 		unifieddyes.on_rightclick(pos, node, clicker,
 		  itemstack, pointed_thing, "stained_glass:faint_stained_glass")
@@ -155,9 +149,7 @@ minetest.register_node("stained_glass:stained_trap_glass", {
 	groups = {snappy=2,cracky=3,oddly_breakable_by_hand=3, not_in_creative_inventory=1},
 	sounds = default.node_sound_glass_defaults(),
 	drop = "moreblocks:trap_super_glow_glass",
-	after_dig_node = function(pos, oldnode, oldmetadata, digger)
-		unifieddyes.after_dig_node(pos, oldnode, oldmetadata, digger)
-	end,
+	after_dig_node = unifieddyes.after_dig_node,
 	on_rightclick = function(pos, node, clicker, itemstack, pointed_thing)
 		local name = itemstack:get_name()
 		if name == "moreblocks:sweeper" then
@@ -186,9 +178,7 @@ minetest.register_node("stained_glass:pastel_stained_trap_glass", {
 	walkable = true,
 	groups = {snappy=2,cracky=3,oddly_breakable_by_hand=3, not_in_creative_inventory=1},
 	sounds = default.node_sound_glass_defaults(),
-	after_dig_node = function(pos, oldnode, oldmetadata, digger)
-		unifieddyes.after_dig_node(pos, oldnode, oldmetadata, digger)
-	end,
+	after_dig_node = unifieddyes.after_dig_node,
 	on_rightclick = function(pos, node, clicker, itemstack, pointed_thing)
 		local name = itemstack:get_name()
 		if name == "moreblocks:sweeper" then
@@ -215,9 +205,7 @@ minetest.register_node("stained_glass:faint_stained_trap_glass", {
 	walkable = true,
 	groups = {snappy=2,cracky=3,oddly_breakable_by_hand=3, not_in_creative_inventory=1},
 	sounds = default.node_sound_glass_defaults(),
-	after_dig_node = function(pos, oldnode, oldmetadata, digger)
-		unifieddyes.after_dig_node(pos, oldnode, oldmetadata, digger)
-	end,
+	after_dig_node = unifieddyes.after_dig_node,
 	on_rightclick = function(pos, node, clicker, itemstack, pointed_thing)
 		unifieddyes.on_rightclick(pos, node, clicker,
 		  itemstack, pointed_thing, "stained_glass:faint_stained_glass")
