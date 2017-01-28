@@ -65,7 +65,8 @@ minetest.register_node("stained_glass:stained_glass", {
 		end
 		unifieddyes.on_rightclick(pos, node, clicker,
 		  itemstack, pointed_thing, "stained_glass:stained_glass")
-	end
+	end,
+	drop = "moreblocks:super_glow_glass"
 })
 
 minetest.override_item("moreblocks:super_glow_glass", {
@@ -103,7 +104,7 @@ minetest.register_node("stained_glass:pastel_stained_glass", {
 		unifieddyes.on_rightclick(pos, node, clicker,
 		  itemstack, pointed_thing, "stained_glass:pastel_stained_glass")
 	end,
-
+	drop = "moreblocks:super_glow_glass"
 })
 
 minetest.register_node("stained_glass:faint_stained_glass", {
@@ -127,7 +128,7 @@ minetest.register_node("stained_glass:faint_stained_glass", {
 		unifieddyes.on_rightclick(pos, node, clicker,
 		  itemstack, pointed_thing, "stained_glass:faint_stained_glass")
 	end,
-
+	drop = "moreblocks:super_glow_glass"
 })
 
 -- trap glass
@@ -166,6 +167,7 @@ minetest.register_node("stained_glass:stained_trap_glass", {
 		unifieddyes.on_rightclick(pos, node, clicker,
 		  itemstack, pointed_thing, "stained_glass:stained_trap_glass")
 	end,
+	drop = "moreblocks:trap_super_glow_glass"
 })
 
 -- pastel and faint trap
@@ -196,6 +198,7 @@ minetest.register_node("stained_glass:pastel_stained_trap_glass", {
 		unifieddyes.on_rightclick(pos, node, clicker,
 		  itemstack, pointed_thing, "stained_glass:pastel_stained_glass")
 	end,
+	drop = "moreblocks:trap_super_glow_glass"
 })
 
 minetest.register_node("stained_glass:faint_stained_trap_glass", {
@@ -219,6 +222,7 @@ minetest.register_node("stained_glass:faint_stained_trap_glass", {
 		unifieddyes.on_rightclick(pos, node, clicker,
 		  itemstack, pointed_thing, "stained_glass:faint_stained_glass")
 	end,
+	drop = "moreblocks:trap_super_glow_glass"
 })
 
 function stainedglass.makenode(arg)
