@@ -54,8 +54,8 @@ minetest.register_node("stained_glass:stained_glass", {
 	groups = {snappy=2,cracky=3,oddly_breakable_by_hand=3, not_in_creative_inventory=1},
 	sounds = default.node_sound_glass_defaults(),
 	drop = "moreblocks:super_glow_glass",
-	on_destruct = function(pos)
-		unifieddyes.on_destruct(pos)
+	after_dig_node = function(pos, oldnode, oldmetadata, digger)
+		unifieddyes.after_dig_node(pos, oldnode, oldmetadata, digger)
 	end,
 	on_rightclick = function(pos, node, clicker, itemstack, pointed_thing)
 		local name = itemstack:get_name()
@@ -92,8 +92,8 @@ minetest.register_node("stained_glass:pastel_stained_glass", {
 	walkable = true,
 	groups = {snappy=2,cracky=3,oddly_breakable_by_hand=3, not_in_creative_inventory=1},
 	sounds = default.node_sound_glass_defaults(),
-	on_destruct = function(pos)
-		unifieddyes.on_destruct(pos)
+	after_dig_node = function(pos, oldnode, oldmetadata, digger)
+		unifieddyes.after_dig_node(pos, oldnode, oldmetadata, digger)
 	end,
 	on_rightclick = function(pos, node, clicker, itemstack, pointed_thing)
 		local name = itemstack:get_name()
@@ -121,8 +121,8 @@ minetest.register_node("stained_glass:faint_stained_glass", {
 	walkable = true,
 	groups = {snappy=2,cracky=3,oddly_breakable_by_hand=3, not_in_creative_inventory=1},
 	sounds = default.node_sound_glass_defaults(),
-	on_destruct = function(pos)
-		unifieddyes.on_destruct(pos)
+	after_dig_node = function(pos, oldnode, oldmetadata, digger)
+		unifieddyes.after_dig_node(pos, oldnode, oldmetadata, digger)
 	end,
 	on_rightclick = function(pos, node, clicker, itemstack, pointed_thing)
 		unifieddyes.on_rightclick(pos, node, clicker,
@@ -155,8 +155,8 @@ minetest.register_node("stained_glass:stained_trap_glass", {
 	groups = {snappy=2,cracky=3,oddly_breakable_by_hand=3, not_in_creative_inventory=1},
 	sounds = default.node_sound_glass_defaults(),
 	drop = "moreblocks:trap_super_glow_glass",
-	on_destruct = function(pos)
-		unifieddyes.on_destruct(pos)
+	after_dig_node = function(pos, oldnode, oldmetadata, digger)
+		unifieddyes.after_dig_node(pos, oldnode, oldmetadata, digger)
 	end,
 	on_rightclick = function(pos, node, clicker, itemstack, pointed_thing)
 		local name = itemstack:get_name()
@@ -186,8 +186,8 @@ minetest.register_node("stained_glass:pastel_stained_trap_glass", {
 	walkable = true,
 	groups = {snappy=2,cracky=3,oddly_breakable_by_hand=3, not_in_creative_inventory=1},
 	sounds = default.node_sound_glass_defaults(),
-	on_destruct = function(pos)
-		unifieddyes.on_destruct(pos)
+	after_dig_node = function(pos, oldnode, oldmetadata, digger)
+		unifieddyes.after_dig_node(pos, oldnode, oldmetadata, digger)
 	end,
 	on_rightclick = function(pos, node, clicker, itemstack, pointed_thing)
 		local name = itemstack:get_name()
@@ -215,8 +215,8 @@ minetest.register_node("stained_glass:faint_stained_trap_glass", {
 	walkable = true,
 	groups = {snappy=2,cracky=3,oddly_breakable_by_hand=3, not_in_creative_inventory=1},
 	sounds = default.node_sound_glass_defaults(),
-	on_destruct = function(pos)
-		unifieddyes.on_destruct(pos)
+	after_dig_node = function(pos, oldnode, oldmetadata, digger)
+		unifieddyes.after_dig_node(pos, oldnode, oldmetadata, digger)
 	end,
 	on_rightclick = function(pos, node, clicker, itemstack, pointed_thing)
 		unifieddyes.on_rightclick(pos, node, clicker,
@@ -490,6 +490,7 @@ minetest.register_lbm({
 		local name = node.name
 		local n = string.find(name, ":")
 		local color = string.sub(name, n + 1)
+		local h,s,v = unifieddyes.get_hsv(name)
 
 		if string.find(name, "trap") then
 			n = string.find(color, "_")
@@ -501,19 +502,19 @@ minetest.register_lbm({
 				local paletteidx = unifieddyes.getpaletteidx("unifieddyes:"..color)
 				minetest.set_node(pos, { name = "stained_glass:pastel_stained_trap_glass", param2 = paletteidx })
 				local meta = minetest.get_meta(pos)
-				meta:set_string("dye", "unifieddyes:"..color)
+				meta:set_string("dye", "unifieddyes:"..v..h..s)
 			elseif string.find(color, "faint") then
 				n = string.find(color, "_")
 				color = string.sub(color, n + 1)
 				local paletteidx = unifieddyes.getpaletteidx("unifieddyes:"..color)
 				minetest.set_node(pos, { name = "stained_glass:faint_stained_trap_glass", param2 = paletteidx })
 				local meta = minetest.get_meta(pos)
-				meta:set_string("dye", "unifieddyes:"..color)
+				meta:set_string("dye", "unifieddyes:"..v..h..s)
 			else
 				local paletteidx = unifieddyes.getpaletteidx("unifieddyes:"..color)
 				minetest.set_node(pos, { name = "stained_glass:stained_trap_glass", param2 = paletteidx })
 				local meta = minetest.get_meta(pos)
-				meta:set_string("dye", "unifieddyes:"..color)
+				meta:set_string("dye", "unifieddyes:"..v..h..s)
 			end
 		else
 			if string.find(color, "pastel") then
@@ -522,19 +523,19 @@ minetest.register_lbm({
 				local paletteidx = unifieddyes.getpaletteidx("unifieddyes:"..color)
 				minetest.set_node(pos, { name = "stained_glass:pastel_stained_glass", param2 = paletteidx })
 				local meta = minetest.get_meta(pos)
-				meta:set_string("dye", "unifieddyes:"..color)
+				meta:set_string("dye", "unifieddyes:"..v..h..s)
 			elseif string.find(color, "faint") then
 				n = string.find(color, "_")
 				color = string.sub(color, n + 1)
 				local paletteidx = unifieddyes.getpaletteidx("unifieddyes:"..color)
 				minetest.set_node(pos, { name = "stained_glass:faint_stained_glass", param2 = paletteidx })
 				local meta = minetest.get_meta(pos)
-				meta:set_string("dye", "unifieddyes:"..color)
+				meta:set_string("dye", "unifieddyes:"..v..h..s)
 			else
 				local paletteidx = unifieddyes.getpaletteidx("unifieddyes:"..color)
 				minetest.set_node(pos, { name = "stained_glass:stained_glass", param2 = paletteidx })
 				local meta = minetest.get_meta(pos)
-				meta:set_string("dye", "unifieddyes:"..color)
+				meta:set_string("dye", "unifieddyes:"..v..h..s)
 			end
 		end
 	end
