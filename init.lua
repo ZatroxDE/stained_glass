@@ -118,7 +118,7 @@ minetest.register_node("stained_glass:faint_stained_glass", {
 -- trap glass
 
 minetest.override_item("moreblocks:trap_super_glow_glass", {
-	groups = {snappy=2,cracky=3,oddly_breakable_by_hand=3, not_in_creative_inventory=1, ud_param2_colorable = 1},
+	groups = {snappy=2,cracky=3,oddly_breakable_by_hand=3, ud_param2_colorable = 1},
 	ud_replacement_node = "stained_glass:stained_trap_glass"
 })
 
