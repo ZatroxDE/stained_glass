@@ -285,7 +285,6 @@ for i in ipairs(stained_glass_hues) do
 
  		recipevalue = "group:dye,unicolor_"..shadename..huename
 		if (shadename == "" and stained_glass_hues[i][2]) then
-			-- print(huename .. " is set to true -- substituting dye:huename ")
 			recipevalue = "dye:"..huename
 		elseif (shadename=="pastel_" or shadename=="faint_") then 
 			-- force light_dye for pastel and faint colors
@@ -358,6 +357,11 @@ minetest.register_lbm({
 	nodenames = stainedglass.old_static_nodes,
 	action = function(pos, node)
 		local name = node.name
+
+		name = string.gsub(name, "aqua", "spring")
+		name = string.gsub(name, "skyblue", "azure")
+		name = string.gsub(name, "redviolet", "rose")
+
 		local n = string.find(name, ":")
 		local color = string.sub(name, n + 1)
 		local h,s,v = unifieddyes.get_hsv(name)
@@ -368,7 +372,7 @@ minetest.register_lbm({
 			local paletteidx = unifieddyes.getpaletteidx("unifieddyes:"..color, "extended")
 			minetest.set_node(pos, { name = "stained_glass:stained_trap_glass", param2 = paletteidx })
 		else
-			local paletteidx = unifieddyes.getpaletteidx("unifieddyes:"..color "extended")
+			local paletteidx = unifieddyes.getpaletteidx("unifieddyes:"..color, "extended")
 			minetest.set_node(pos, { name = "stained_glass:stained_glass", param2 = paletteidx })
 		end
 		local meta = minetest.get_meta(pos)
