@@ -39,6 +39,8 @@ January 2017 -- rewritten a bit more by Vanessa E. to use engine param2 coloriza
 stainedglass = {}
 stainedglass.old_static_nodes = {}
 
+local myglow = LIGHT_MAX-3
+
 minetest.register_node("stained_glass:stained_glass", {
 	description = "Stained Glass",
 	drawtype = "glasslike",
